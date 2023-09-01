@@ -8,8 +8,12 @@ dotenv.config();
 const app = express();
 const port = 3000;
 
-app.use(roteadorLogin);
 app.use(express.json());
+//src/index.js
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(roteadorLogin);
 app.use(roteadorUsuario);
 
 app.get("/", (req, res) => {

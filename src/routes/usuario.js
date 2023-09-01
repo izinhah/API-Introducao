@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { autenticarUsuario } from "../db/index.js";
 
 import {
   selectUsuario,
@@ -31,7 +32,7 @@ router.get("/usuario/:id", async (req, res) => {
   }
 });
 
-router.post("/usuario", async (req, res) => {
+router.post("/usuario", verificarAutenticacao, async (req, res) => {
   console.log("Rota POST /usuario solicitada");
   try {
     await insertUsuario(req.body);
@@ -41,7 +42,7 @@ router.post("/usuario", async (req, res) => {
   }
 });
 
-router.put("/usuario", async (req, res) => {
+router.put("/usuario",  verificarAutenticacao, async (req, res) => {
   console.log("Rota PUT /usuario solicitada");
   try {
     const usuario = await selectUsuario(req.body.id);
@@ -55,7 +56,7 @@ router.put("/usuario", async (req, res) => {
   }
 });
 
-router.delete("/usuario/:id", async (req, res) => {
+router.delete("/usuario/:id", verificarAutenticacao, async (req, res) => {
   console.log("Rota DELETE /usuario solicitada");
   try {
     await deleteUsuario(req.params.id);
