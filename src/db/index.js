@@ -55,6 +55,6 @@ async function autenticarUsuario(email, senha) {
 }
 
 //bd.js
-export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario }; 
+export { selectUsuarios, selectUsuario, insertUsuario, deleteUsuario, updateUsuario, autenticarUsuario }; 
 
 
